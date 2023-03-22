@@ -1,0 +1,14 @@
+{
+  "name": "dynamic-manifests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate": "jk generate --stdout ./index.js"
+  },
+  "dependencies": {
+    "@jkcfg/kubernetes": "^0.5.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
