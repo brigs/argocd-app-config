@@ -45,6 +45,10 @@ echo "Retrieving ArgoCD admin password..."
 ARGOCD_ADMIN_PASSWORD=$(kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d)
 echo "ArgoCD admin password: $ARGOCD_ADMIN_PASSWORD"
 
+# Adding the example application
+kubectl apply -f application.yml
+
 # Print ArgoCD login command
 echo "To login to ArgoCD, first expose the ArgoCD server service and then use the following command:"
 echo "argocd login <ARGOCD_SERVER> --username admin --password $ARGOCD_ADMIN_PASSWORD"
+
