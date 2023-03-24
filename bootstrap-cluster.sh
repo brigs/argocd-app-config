@@ -45,8 +45,9 @@ echo "Retrieving ArgoCD admin password..."
 ARGOCD_ADMIN_PASSWORD=$(kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d)
 echo "ArgoCD admin password: $ARGOCD_ADMIN_PASSWORD"
 
-# Adding the example application
-kubectl apply -f application.yml
+# Adding the example application which makes use of dynamic manifests
+echo "adding a dynamic manifest to ArgoCD"
+make
 
 # Print ArgoCD login command
 echo "To login to ArgoCD, first expose the ArgoCD server service and then use the following command:"
