@@ -12,4 +12,4 @@ COPY dynamic-manifests/kustomization.yaml .
 COPY dynamic-manifests/base/deployment.yaml base/deployment.yaml
 RUN npm install
 
-ENTRYPOINT ["npm","run", "generate"]
+ENTRYPOINT ["npm","run", "generate","--silent"]
