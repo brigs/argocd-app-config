@@ -13,5 +13,4 @@ spec:
     spec:
       containers:
       - name: world
-        image: quay.io/weaveworks/helloworld
-        port: 8080
+        image: nginx
