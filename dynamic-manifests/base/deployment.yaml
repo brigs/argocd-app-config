@@ -11,5 +11,5 @@ spec:
       labels: { app: hello }
     spec:
       containers:
-      - name: worldHasChanged
+      - name: worldThisIsRelease2
         image: nginx
