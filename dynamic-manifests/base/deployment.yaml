@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello
-  namespace: default
 spec:
   replicas: 1
   selector:
@@ -12,7 +11,5 @@ spec:
       labels: { app: hello }
     spec:
       containers:
-      - name: world
-        image: quay.io/weaveworks/helloworld
-        ports: 
-          - containerPort: 8080
+      - name: this-is-release5
+        image: nginx
