@@ -4,7 +4,7 @@ spec:
       containers:
         - name: knowit-jk-plugin
           command: [/var/run/argocd/argocd-cmp-server] # Entrypoint should be Argo CD lightweight CMP server i.e. argocd-cmp-server
-          image: localhost:6000/knowit-jk-container # This can be off-the-shelf or custom-built image
+          image: knowit-jk-container:1.0 # This can be off-the-shelf or custom-built image
           securityContext:
             runAsNonRoot: true
             runAsUser: 999
