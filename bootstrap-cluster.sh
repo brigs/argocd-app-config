@@ -32,10 +32,6 @@ kubectl wait --for=condition=Ready --timeout=300s nodes --all
 echo "Creating ArgoCD namespace..."
 kubectl create namespace argocd
 
-# Create knowit-testing namespace
-echo "Creating knowit-testing namespace..."
-kubectl create namespace knowit-testing
-
 # Create a custom registry for our images
 if [ "$(docker ps -q -f name=local_docker_registry)" ]; then
   # Container is already running, do nothing
@@ -55,10 +51,6 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 echo "Waiting for ArgoCD to be ready..."
 kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -n argocd
 
-# Adding the example application which makes use of dynamic manifests
-# echo "adding a dynamic manifest to ArgoCD"
-# make
-
 # Apply a configmap for the jk plugin
 echo "Applying knowit-jk-configmap to kubernetes"
 kubectl apply -f argocd-plugin/knowit-jk-config.yaml
@@ -71,6 +63,12 @@ make load-image-into-kind
 
 # Patch the pod with a sidecar container / plugin in order to use it to build manifests
 kubectl patch deployment argocd-repo-server -n argocd --patch-file patch-jk.yml
+
+# Create an application in ArgoCD
+# We have to either manually create the application in the GUI, or it can be done by kubectl.
+# Note that this is a one time operation, argocd will take control over the application and the manifest after this
+echo "Creating a test ArgoCD application"
+kubectl apply -f argocd-application.yaml
 
 # Retrieve ArgoCD admin password
 echo "Retrieving ArgoCD admin password..."
