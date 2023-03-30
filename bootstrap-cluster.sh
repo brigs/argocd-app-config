@@ -76,3 +76,5 @@ kubectl patch deployment argocd-repo-server -n argocd --patch-file patch-jk.yml
 echo "Retrieving ArgoCD admin password..."
 ARGOCD_ADMIN_PASSWORD=$(kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d)
 echo "ArgoCD admin password: $ARGOCD_ADMIN_PASSWORD"
+
+echo "Run kubectl port-forward -n argocd svc/argocd-server 8080:443 to login"
